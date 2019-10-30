@@ -6,7 +6,7 @@ mongoose.connect(process.env.MONGO_URI, {
     useFindAndModify: true,
     useUnifiedTopology: true
 })
-.then((res) => console.log("mongodb connection: done!"))
-.catch((err) => console.log("mongodb connection error: ", err))
+.then((res) => console.log("mongodb connection: success!"))
+.catch((err) => console.log("mongodb connection - error: ", err))
 
 module.exports = mongoose
