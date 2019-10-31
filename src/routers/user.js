@@ -44,7 +44,7 @@ router.delete('/users/:id', async (req, res) => {
         await user.delete()
         res.status(200).send({status: 1, msg: "", data: {user}})
     } catch (error) {
-        res.status(400).send({status: 0, msg: error.errmsg, data})
+        res.status(400).send({status: 0, msg: error.errmsg, data: {}})
     }
 })
 
