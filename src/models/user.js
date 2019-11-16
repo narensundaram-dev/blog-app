@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
         minlength: true,
         required: true
     },
+    dp: {
+        type: String
+    },
     tokens: [{
         token: {
             type: String,
@@ -50,9 +53,11 @@ userSchema.pre('save', async function(next) {
 userSchema.methods.toJSON = function() {
     const user = this
     const userObj = user.toObject()
-    const hideFields = ['password', 'tokens', '__v']
+    const fields = ['_id', 'name', 'username', 'createdAt', 'updatedAt', 'dp']
 
-    hideFields.forEach(key => delete userObj[key] );
+    for (let key in userObj) {
+        if (fields.indexOf(key) == -1) delete userObj[key]
+    }
 
     return userObj
 }

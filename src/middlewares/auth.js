@@ -3,9 +3,10 @@ const User = require("../models/user")
 
 const auth = async (req, res, next) => {
     try {
+        if (!req.header("Authorization")) throw new Error("Unauthorized request.")
         const token = req.header("Authorization").replace("Bearer ", "")
 
-        if (!token) throw new Error("Token ")
+        if (!token) throw new Error("Unauthorized request.")
 
         const tokenDecode = jwt.verify(token, process.env.JWT_SECRET_KEY)
         const user = await User.findOne( {_id: tokenDecode._id} )
